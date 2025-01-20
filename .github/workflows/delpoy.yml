@@ -5,9 +5,9 @@ jobs:
   build_Deoploy_task:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 
+      - name: Checkout New 
         uses: actions/checkout@v4
-      - name: build image
+      - name: build image with dockerfile
         run: docker build ./api -t mannu121/testrepo:latest
       - name: push image to docker Hub
         run: |
