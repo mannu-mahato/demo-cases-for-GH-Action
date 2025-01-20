@@ -1,0 +1,32 @@
+name: Source Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Trigger repository dispatch
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const github = require('@actions/github');
+
+            const response = await github.repos.createDispatchEvent({
+              owner: 'mannu-mahato',
+              repo: 'testing-repo',
+              event_type: 'workflow-dispatch',
+              client_payload: {
+                ref: github.context.ref
+              }
+            });
+
+            console.log(response);
+          github-token: ${{ secrets.GITHUB_TOKEN }}
