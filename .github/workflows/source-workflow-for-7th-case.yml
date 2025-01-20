@@ -1,32 +1,28 @@
-name: Source Workflow
+name: Trigger Dispatch Event
 
+# This workflow is triggered when there is a push to the main branch.
 on:
   push:
     branches:
       - main
 
 jobs:
-  dispatch:
+  trigger-dispatch:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
+      # Step 2: Trigger the repository dispatch event
       - name: Trigger repository dispatch
         uses: actions/github-script@v6
         with:
           script: |
-            const github = require('@actions/github');
-
-            const response = await github.repos.createDispatchEvent({
-              owner: 'mannu-mahato',
-              repo: 'testing-repo',
-              event_type: 'workflow-dispatch',
-              client_payload: {
-                ref: github.context.ref
-              }
+            await github.repos.createDispatchEvent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event_type: 'custom-event'  # This is the custom event type
             });
-
-            console.log(response);
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
