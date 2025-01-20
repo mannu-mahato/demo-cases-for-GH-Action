@@ -17,15 +17,15 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const github = require('@actions/github');
-            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+            const { getOctokit, context } = require('@actions/github');
+            const myOctokit = getOctokit(process.env.GITHUB_TOKEN);
 
-            await octokit.repos.createDispatchEvent({
+            await myOctokit.repos.createDispatchEvent({
               owner: 'mannu-mahato',
               repo: 'testing-repo',
               event_type: 'workflow-dispatch',
               client_payload: {
-                ref: process.env.GITHUB_REF
+                ref: context.ref
               }
             });
           github-token: ${{ secrets.GITHUB_TOKEN }}
