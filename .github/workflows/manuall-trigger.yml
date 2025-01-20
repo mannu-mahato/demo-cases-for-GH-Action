@@ -11,5 +11,5 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
       
-    - name: Step for List Files
+    - name: echo msg
       run: echo "manually workflow trigger"
