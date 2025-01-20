@@ -1,4 +1,4 @@
-name: Trigger Dispatch Event
+name: Source Workflow
 
 on:
   push:
@@ -6,18 +6,26 @@ on:
       - main
 
 jobs:
-  trigger-dispatch:
+  dispatch:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Trigger repository dispatch
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.repos.createDispatchEvent({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              event_type: 'custom-event'
+            const { context, getOctokit } = require('@actions/github');
+            const github = getOctokit(process.env.GITHUB_TOKEN);
+
+            await github.repos.createDispatchEvent({
+              owner: 'mannu-mahato',
+              repo: 'testing-repo',
+              event_type: 'workflow-dispatch',
+              client_payload: {
+                ref: context.ref
+              }
             });
+          github-token: ${{ secrets.GITHUB_TOKEN }}
