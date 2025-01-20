@@ -16,7 +16,7 @@ jobs:
       - name: Trigger repository dispatch
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           repository: mannu-mahato/testing-repo
           event-type: workflow-dispatch
           client-payload: '{"ref": "refs/heads/main"}'
