@@ -2,17 +2,16 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "mocha": true  // Add this if you're using Mocha
   },
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended"
+  ],
   "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module"
+    "ecmaVersion": 12
   },
   "rules": {
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"]
+    // Add or modify any custom rules here
   }
 }
