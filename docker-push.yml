@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: docker push image
 on: 
   push:
@@ -14,3 +15,21 @@ jobs:
           docker login -u mannu121 -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push mannu121/testrepo:latest
           
+=======
+name: docker push image
+on: 
+  push:
+jobs:
+  build & Deoploy task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+      - name: build image
+        run: docker build ./api/ -t mannu121/testrepo:latest
+      - name: push image to docker Hub
+        run: |
+          docker login -u mannu121 -p ${{ secrets.DOCKER_HUB_TOKEN }}
+          docker push mannu121/testrepo:latest
+          
+>>>>>>> efa45c5662f2bc8df6b545963fa0e45ba1fe7fb3
