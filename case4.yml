@@ -1,4 +1,4 @@
-name: build & test on pull & push to main
+name: build & test on pull & push to main branch
 on:
   push:
     branches:
