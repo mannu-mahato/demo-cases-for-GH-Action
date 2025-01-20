@@ -1,16 +1,19 @@
 {
-    "name": "my-app",
-    "version": "1.0.0",
-    "description": "A simple Node.js application",
-    "main": "server.js",
-    "scripts": {
-      "start": "node server.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Your Name",
-    "license": "ISC",
-    "dependencies": {
-      "express": "^4.17.1"
-    }
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "author": "Mannu Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^27.0.0",
+    "supertest": "^6.1.3"
   }
-  
+}
