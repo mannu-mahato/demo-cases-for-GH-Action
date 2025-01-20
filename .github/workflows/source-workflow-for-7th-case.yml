@@ -14,18 +14,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Trigger repository dispatch
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const owner = 'mannu-mahato';
-            const repo = 'testing-repo';
-            const event_type = 'workflow-dispatch';
-            const ref = process.env.GITHUB_REF;
-
-            await github.repos.createDispatchEvent({
-              owner: owner,
-              repo: repo,
-              event_type: event_type,
-              client_payload: { ref: ref }
-            });
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/mannu-mahato/testing-repo/dispatches \
+          -d '{"event_type":"workflow-dispatch","client_payload":{"ref":"refs/heads/main"}}'
