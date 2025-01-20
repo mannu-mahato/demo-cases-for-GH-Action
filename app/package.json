@@ -16,4 +16,14 @@
     "jest": "^27.0.0",
     "supertest": "^6.1.3"
   }
+  {
+  "name": "test-release-code",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo 'No build script defined.'"
+    // other scripts...
+  },
+  // other configuration...
+}
+
 }
